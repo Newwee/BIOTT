@@ -97,6 +97,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (chapterKey === 'immune') dataObj = window.immuneData;
     else if (chapterKey === 'genetic') dataObj = window.geneticData;
     else if (chapterKey === 'genetic2') dataObj = window.genetic2Data;
+    else if (chapterKey === 'krugip') dataObj = window.krugipData;
 
     if (!dataObj || !dataObj.summaryContent) {
       summaryCardsContainer.innerHTML = '<p class="error-text">ไม่พบข้อมูลบทเรียน</p>';
@@ -203,12 +204,15 @@ document.addEventListener('DOMContentLoaded', () => {
       pool = (window.geneticData && window.geneticData.questionBank) ? [...window.geneticData.questionBank] : [];
     } else if (topic === 'genetic2') {
       pool = (window.genetic2Data && window.genetic2Data.questionBank) ? [...window.genetic2Data.questionBank] : [];
+    } else if (topic === 'krugip') {
+      pool = (window.krugipData && window.krugipData.questionBank) ? [...window.krugipData.questionBank] : [];
     } else {
       // 'all' - รวมทุกบทเข้าด้วยกัน
       const q1 = (window.immuneData && window.immuneData.questionBank) || [];
       const q2 = (window.geneticData && window.geneticData.questionBank) || [];
       const q3 = (window.genetic2Data && window.genetic2Data.questionBank) || [];
-      pool = [...q1, ...q2, ...q3];
+      const q4 = (window.krugipData && window.krugipData.questionBank) || [];
+      pool = [...q1, ...q2, ...q3, ...q4];
     }
     return pool;
   }
@@ -245,7 +249,8 @@ document.addEventListener('DOMContentLoaded', () => {
       'all': '🌐 รวมทุกบท (Mixed All)',
       'immune': '🛡️ ระบบภูมิคุ้มกัน',
       'genetic': '🧬 พันธุศาสตร์ ตอนที่ 1',
-      'genetic2': '🔬 พันธุศาสตร์ ตอนที่ 2'
+      'genetic2': '🔬 พันธุศาสตร์ ตอนที่ 2',
+      'krugip': '📝 สรุป ม.6 Final (ครูกิ๊ป)'
     };
     activeTopicName.textContent = topicLabels[selectedTopic] || 'แบบทดสอบ';
     totalQuestionsNum.textContent = activeQuestions.length;
