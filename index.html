@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="th" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BioHub - สรุปเนื้อหาและคลังข้อสอบชีววิทยา</title>
+  
+  <!-- Google Fonts & Font Awesome Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Prompt:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Site Header & Navigation -->
+  <header class="site-header">
+    <div class="container nav-wrapper">
+      <div class="brand" id="brandLogo">
+        <div class="brand-icon">
+          <i class="fa-solid fa-dna"></i>
+        </div>
+        <div class="brand-text">
+          <h1>BioHub</h1>
+          <span>สรุปบทเรียน & คลังข้อสอบชีววิทยา</span>
+        </div>
+      </div>
+
+      <div class="header-controls">
+        <!-- Mode Switcher -->
+        <nav class="mode-switch-group">
+          <button class="mode-btn active" id="btnStudyMode" data-mode="study">
+            <i class="fa-solid fa-book-open"></i>
+            <span>สรุปเนื้อหา</span>
+          </button>
+          <button class="mode-btn" id="btnQuizMode" data-mode="quiz">
+            <i class="fa-solid fa-clipboard-question"></i>
+            <span>แบบทดสอบ</span>
+          </button>
+        </nav>
+
+        <!-- Light/Dark Theme Switcher -->
+        <button class="theme-toggle-btn" id="themeToggleBtn" title="สลับธีม สว่าง/มืด" aria-label="Toggle Theme">
+          <i class="fa-solid fa-moon" id="themeIcon"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Application Area -->
+  <main class="main-content">
+    <div class="container">
+
+      <!-- Dynamic Hero Banner -->
+      <section class="hero-banner">
+        <div class="hero-tag" id="heroTag">
+          <i class="fa-solid fa-graduation-cap"></i>
+          <span id="heroTagText">คลังความรู้ชีววิทยา ม.ปลาย & สอบปลายภาค</span>
+        </div>
+        <h2 class="hero-title" id="heroTitle">สรุปบทเรียนชีววิทยาเข้มข้น</h2>
+        <p class="hero-desc" id="heroDesc">
+          ทบทวนเนื้อหาสำคัญ 3 บทเรียน: ระบบภูมิคุ้มกัน (Immune System), พันธุศาสตร์ ตอนที่ 1 และพันธุศาสตร์ ตอนที่ 2 จัดหมวดหมู่ชัดเจน พร้อมกล่องช่วยจำ
+        </p>
+      </section>
+
+      <!-- ==========================================
+           SECTION 1: STUDY MODE (สรุปเนื้อหา)
+           ========================================== -->
+      <section id="studySection" class="study-section">
+        <!-- Chapter Selector Tabs -->
+        <div class="study-tabs">
+          <button class="study-tab-btn active" data-chapter="immune">
+            <span class="tab-icon">🛡️</span>
+            <div class="tab-meta">
+              <h3>ระบบภูมิคุ้มกัน</h3>
+              <span>Innate & Adaptive, แอนติบอดี, ด่านป้องกัน</span>
+            </div>
+          </button>
+          <button class="study-tab-btn" data-chapter="genetic">
+            <span class="tab-icon">🧬</span>
+            <div class="tab-meta">
+              <h3>พันธุศาสตร์ ตอนที่ 1</h3>
+              <span>เมนเดล, การคำนวณ, Chi-square, หมู่เลือด</span>
+            </div>
+          </button>
+          <button class="study-tab-btn" data-chapter="genetic2">
+            <span class="tab-icon">🔬</span>
+            <div class="tab-meta">
+              <h3>พันธุศาสตร์ ตอนที่ 2</h3>
+              <span>DNA/RNA, โรคทางพันธุกรรม, Pedigree</span>
+            </div>
+          </button>
+        </div>
+
+        <!-- Dynamic Summary Cards Container -->
+        <div class="summary-container" id="summaryCardsContainer">
+          <!-- เนื้อหาสรุปจะถูก Render อัตโนมัติจาก script.js -->
+        </div>
+      </section>
+
+      <!-- ==========================================
+           SECTION 2: QUIZ MODE (ทำแบบทดสอบ)
+           ========================================== -->
+      <section id="quizSection" class="quiz-section" style="display: none;">
+        
+        <!-- Screen 2.1: Quiz Setup / Configuration -->
+        <div class="quiz-setup-card" id="quizSetupScreen">
+          <h2><i class="fa-solid fa-sliders"></i> ตั้งค่าการทำแบบทดสอบ</h2>
+          <p>เลือกบทเรียนที่ต้องการทดสอบและจำนวนข้อ เพื่อสุ่มโจทย์จากคลังข้อสอบ 100+ ข้อ</p>
+
+          <div class="form-group">
+            <label class="form-label">เลือกบทเรียน:</label>
+            <div class="topic-options-grid">
+              <button class="topic-select-btn selected" data-topic="all">
+                <span class="t-icon">🌐</span>
+                <div class="t-text">รวมทุกบท (Mixed All)</div>
+              </button>
+              <button class="topic-select-btn" data-topic="immune">
+                <span class="t-icon">🛡️</span>
+                <div class="t-text">ระบบภูมิคุ้มกัน</div>
+              </button>
+              <button class="topic-select-btn" data-topic="genetic">
+                <span class="t-icon">🧬</span>
+                <div class="t-text">พันธุศาสตร์ ตอนที่ 1</div>
+              </button>
+              <button class="topic-select-btn" data-topic="genetic2">
+                <span class="t-icon">🔬</span>
+                <div class="t-text">พันธุศาสตร์ ตอนที่ 2</div>
+              </button>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">จำนวนข้อสอบที่ต้องการทำต่อชุด:</label>
+            <div class="question-count-group">
+              <button class="count-btn" data-count="10">10 ข้อ</button>
+              <button class="count-btn selected" data-count="15">15 ข้อ (แนะนำ)</button>
+            </div>
+          </div>
+
+          <button class="start-quiz-btn" id="startQuizBtn">
+            <i class="fa-solid fa-play"></i>
+            <span>เริ่มทำแบบทดสอบ</span>
+          </button>
+        </div>
+
+        <!-- Screen 2.2: Quiz Active Testing -->
+        <div class="quiz-active-container" id="quizActiveScreen" style="display: none;">
+          <!-- Top Meta Bar -->
+          <div class="quiz-meta-bar">
+            <div class="quiz-topic-indicator" id="activeTopicBadge">
+              <i class="fa-solid fa-layer-group"></i>
+              <span id="activeTopicName">รวมทุกบท</span>
+            </div>
+            <div class="quiz-counter-text">
+              ข้อที่ <span id="currentQuestionNum">1</span> / <span id="totalQuestionsNum">15</span>
+            </div>
+          </div>
+
+          <!-- Progress Bar -->
+          <div class="progress-container">
+            <div class="progress-bar-fill" id="quizProgressBar"></div>
+          </div>
+
+          <!-- Question & Options Card -->
+          <div class="question-card">
+            <h3 class="question-title" id="questionText">คำถามจะแสดงที่นี่</h3>
+            
+            <div class="options-grid" id="optionsContainer">
+              <!-- Choice buttons rendered dynamically by script.js -->
+            </div>
+
+            <!-- Detailed Explanation Box (Revealed after answer) -->
+            <div class="explanation-box" id="explanationContainer" style="display: none;">
+              <div class="exp-header" id="expHeader">
+                <i class="fa-solid fa-circle-check"></i>
+                <span id="expTitle">ถูกต้อง!</span>
+              </div>
+              <p class="exp-content" id="expContent">คำอธิบายเฉลยละเอียด...</p>
+            </div>
+
+            <!-- Action Bar -->
+            <div class="quiz-action-bar">
+              <button class="next-btn" id="nextQuestionBtn" style="display: none;">
+                <span>ข้อถัดไป</span>
+                <i class="fa-solid fa-arrow-right"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Screen 2.3: Quiz Result Summary -->
+        <div class="quiz-result-card" id="quizResultScreen" style="display: none;">
+          <div class="trophy-icon" id="resultTrophy">🏆</div>
+          <h2 class="result-title" id="resultTitle">การทดสอบเสร็จสมบูรณ์!</h2>
+          <p class="result-subtitle" id="resultSubtitle">คุณทำแบบทดสอบครบตามจำนวนข้อแล้ว</p>
+
+          <div class="score-display-circle">
+            <span class="score-number" id="finalScoreNum">0</span>
+            <span class="score-max">เต็ม <span id="finalScoreMax">15</span></span>
+          </div>
+
+          <div>
+            <span class="score-badge" id="scoreBadge">ยอดเยี่ยมมาก!</span>
+          </div>
+
+          <div class="result-actions">
+            <button class="btn-primary" id="restartQuizBtn">
+              <i class="fa-solid fa-rotate-right"></i>
+              <span>เริ่มทำใหม่อีกครั้ง (สุ่มชุดใหม่)</span>
+            </button>
+            <button class="btn-secondary" id="backToSetupBtn">
+              <i class="fa-solid fa-sliders"></i>
+              <span>เปลี่ยนบทเรียน / ตั้งค่าใหม่</span>
+            </button>
+          </div>
+
+          <!-- Question Mistake Review Section -->
+          <div class="review-section" id="reviewSection">
+            <h3><i class="fa-solid fa-list-check"></i> ตรวจทานคำตอบทั้งหมด</h3>
+            <div id="reviewItemsList">
+              <!-- Review list populated by script.js -->
+            </div>
+          </div>
+        </div>
+
+      </section>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <p>BioHub &copy; 2026 | แอปพลิเคชันสรุปเนื้อหาและคลังข้อสอบชีววิทยา | ครอบคลุม Immune System & Genetics Part I & II</p>
+    </div>
+  </footer>
+
+  <!-- Load Data Files First -->
+  <script src="immune.js"></script>
+  <script src="genetic.js"></script>
+  <script src="genetic2.js"></script>
+
+  <!-- Load Main Controller Script -->
+  <script src="script.js"></script>
+</body>
+</html>
