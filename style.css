@@ -303,6 +303,71 @@ button {
   margin: 0 auto;
 }
 
+/* Exam Checklist Card */
+.exam-checklist-card {
+  margin-top: 1.25rem;
+  max-width: 780px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.checklist-toggle-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.6rem 1.2rem;
+  border-radius: var(--radius-full);
+  background-color: var(--bg-surface);
+  border: 1.5px solid var(--primary);
+  color: var(--primary);
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  box-shadow: var(--shadow-sm);
+}
+
+.checklist-toggle-btn:hover {
+  background-color: var(--primary-light);
+  transform: translateY(-1px);
+}
+
+.checklist-content {
+  margin-top: 1rem;
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 1.25rem 1.5rem;
+  text-align: left;
+  box-shadow: var(--shadow-md);
+  animation: fadeIn 0.3s ease;
+}
+
+.checklist-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.65rem 1.25rem;
+}
+
+.chk-item {
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.chk-item i {
+  color: var(--success);
+  font-size: 0.85rem;
+}
+
+@media (max-width: 768px) {
+  .checklist-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
 /* ==========================================================
    STUDY MODE STYLES
    ========================================================== */

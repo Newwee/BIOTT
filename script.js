@@ -37,6 +37,20 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
+  // Toggle Exam Checklist
+  const toggleChecklistBtn = document.getElementById('toggleChecklistBtn');
+  const checklistContent = document.getElementById('checklistContent');
+  const checklistChevron = document.getElementById('checklistChevron');
+  if (toggleChecklistBtn && checklistContent) {
+    toggleChecklistBtn.addEventListener('click', () => {
+      const isHidden = checklistContent.style.display === 'none';
+      checklistContent.style.display = isHidden ? 'block' : 'none';
+      if (checklistChevron) {
+        checklistChevron.className = isHidden ? 'fa-solid fa-chevron-up' : 'fa-solid fa-chevron-down';
+      }
+    });
+  }
+
   // ==========================================
   // 2. NAVIGATION & MODE SWITCHING
   // ==========================================
